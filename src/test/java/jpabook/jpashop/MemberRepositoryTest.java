@@ -19,9 +19,10 @@ public class MemberRepositoryTest {
     @Transactional // 테스트에 트랙잭션이 있으면 디비를 롤백한다.
     @Rollback(false)
     public void testMember() throws Exception{
+
         //given
         Member member = new Member();
-        member.setUsername("Donggyu");
+        member.setUsername("Donggyu2");
 
 
         //when
@@ -31,8 +32,12 @@ public class MemberRepositoryTest {
         Assertions.assertThat(findMember.getId()).isEqualTo(member.getId());
         Assertions.assertThat(findMember.getUsername()).isEqualTo(member.getUsername());
         Assertions.assertThat(findMember).isEqualTo(member);
-        System.out.println("findM = m" + (findMember == member));
+        System.out.println("findM = m " + (findMember == member));
 
+    }
+
+    @Test
+    public void findMemeber(){
     }
 
 }
