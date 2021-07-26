@@ -17,7 +17,7 @@ public class ItemRepository {
         if(item.getId() == null) { // 아이템은 처음에 아이디가 없다. 완전히 새로 생성하는 객체
             em.persist(item);
         } else{
-            em.merge(item); //업데이트의 개념
+            em.merge(item); //머지가 호출된다.
         }
     }
 
