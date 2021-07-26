@@ -26,7 +26,7 @@ public class Member {
     @Embedded
     private Address address;
 
-//    @JsonIgnore 엔티티에 프레젠테이션 계층을 위한 코드가 들어가는 것은 좋지 않다.
+    @JsonIgnore // 엔티티에 프레젠테이션 계층을 위한 코드가 들어가는 것은 좋지 않다.
     @OneToMany(mappedBy = "member")
     private List<Order> orders = new ArrayList<>();
 
