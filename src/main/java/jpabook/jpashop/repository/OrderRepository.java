@@ -87,6 +87,20 @@ public class OrderRepository {
         return resultList;
     }
 
+    public List<Order> findAllWithItem() {
+        // distinct JPA에서 같은 id 비교 후 중복을 제거해준다. (디비 SQL에서는 거르지 못함.)
+        return em.createQuery("select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i"
+                ,Order.class).getResultList();
+
+        // 페치 조인을 통해 쿼리가 한번 나간다.
+        // 서비스로 페치 조인을 했냐 안했냐의 차이 / 컨트롤러 단 코드는 차이가 없다!
+        // 일대다를 페치 조인 하는 순간, 페이징 기능이 사용 불가능해진다.
+
+    }
 
 
     /**
