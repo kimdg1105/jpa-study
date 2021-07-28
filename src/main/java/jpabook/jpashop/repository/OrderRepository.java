@@ -71,6 +71,24 @@ public class OrderRepository {
         return query.getResultList();
     }
 
+    public List<Order> findAllWithMemberDelivery() {
+        List<Order> resultList = em.createQuery("select o from Order o" +
+                " join fetch o.member m" +
+                " join fetch o.delivery d", Order.class
+        ).getResultList(); // Fetch-join 이용
+
+        return resultList;
+    }
+
+    public List<OrderSimpleQueryDto> findOrderDtos() {
+        List<OrderSimpleQueryDto> resultList = em.createQuery("select new jpabook.jpashop.repository.OrderSimpleQueryDto(o.id, m.name, o.orderDate, o.status, d.address) from Order o" +
+                " join o.member m" +
+                " join o.delivery d", OrderSimpleQueryDto.class).getResultList();
+        return resultList;
+    }
+
+
+
     /**
      * Criteria를 이용한 동적 쿼리 방법
      *
