@@ -3,14 +3,13 @@ package jpabook.jpashop.api;
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.Order;
 import jpabook.jpashop.domain.enums.OrderStatus;
-import jpabook.jpashop.repository.OrderRepository;
-import jpabook.jpashop.repository.OrderSearch;
-import jpabook.jpashop.repository.OrderSimpleQueryDto;
+import jpabook.jpashop.repository.order.OrderRepository;
+import jpabook.jpashop.repository.order.OrderSearch;
+import jpabook.jpashop.repository.order.OrderSimpleQueryDto;
 import jpabook.jpashop.service.OrderService;
 import lombok.Builder;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.jni.Local;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
