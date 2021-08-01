@@ -10,6 +10,7 @@ import jpabook.jpashop.repository.order.query.OrderFlatDto;
 import jpabook.jpashop.repository.order.query.OrderItemQueryDto;
 import jpabook.jpashop.repository.order.query.OrderQueryDto;
 import jpabook.jpashop.repository.order.query.OrderQueryRepository;
+import jpabook.jpashop.service.query.OrderQueryService;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -53,14 +54,9 @@ public class OrderApiController {
     }
 
     @GetMapping("/api/v3/orders")
-    public List<OrderDto> orderV3() {
-        List<Order> orderList = orderRepository.findAllWithItem();
-
-        List<OrderDto> collect = orderList.stream()
-                .map(order -> new OrderDto(order))
-                .collect(toList());
-
-        return collect;
+    public List<OrderQueryService.OrderDto> orderV3() {
+        OrderQueryService orderQueryService = new OrderQueryService(orderRepository);
+        return orderQueryService.ordersV3();
     }
 
     @GetMapping("/api/v3.1/orders")
@@ -121,7 +117,7 @@ public class OrderApiController {
     }
 
     @Getter
-    static class OrderDto {
+    public static class OrderDto {
 
         private Long orderId;
         private String name;
@@ -147,7 +143,7 @@ public class OrderApiController {
     }
 
     @Getter
-    static class OrderItemDto {
+    public static class OrderItemDto {
 
         private String itemName; // 상품명
         private int orderPrice; // 주문 가격

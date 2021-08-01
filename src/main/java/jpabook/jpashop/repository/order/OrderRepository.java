@@ -3,6 +3,7 @@ package jpabook.jpashop.repository.order;
 import jpabook.jpashop.domain.Order;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.EntityManager;
@@ -29,6 +30,8 @@ public class OrderRepository {
      * @param orderSearch
      * @return
      */
+
+    @Transactional
     public List<Order> findAll(OrderSearch orderSearch) {
 
         //language=JPAQL
