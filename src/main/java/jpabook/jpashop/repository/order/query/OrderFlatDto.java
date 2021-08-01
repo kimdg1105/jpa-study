@@ -3,16 +3,13 @@ package jpabook.jpashop.repository.order.query;
 
 import jpabook.jpashop.domain.Address;
 import jpabook.jpashop.domain.enums.OrderStatus;
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
-@EqualsAndHashCode(of = "orderId")
-public class OrderQueryDto {
+public class OrderFlatDto {
 
     private Long orderId;
     private  String name;
@@ -21,20 +18,30 @@ public class OrderQueryDto {
     private Address address;
     private List<OrderItemQueryDto> orderitems;
 
-    public OrderQueryDto(Long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address) {
+    private String itemName;
+    private int OrderPrice;
+    private int count;
+
+    public OrderFlatDto(Long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address, String itemName, int orderPrice, int count) {
         this.orderId = orderId;
         this.name = name;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.address = address;
+        this.itemName = itemName;
+        OrderPrice = orderPrice;
+        this.count = count;
     }
 
-    public OrderQueryDto(Long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address, List<OrderItemQueryDto> orderitems) {
+    public OrderFlatDto(Long orderId, String name, LocalDateTime orderDate, OrderStatus orderStatus, Address address, List<OrderItemQueryDto> orderitems, String itemName, int orderPrice, int count) {
         this.orderId = orderId;
         this.name = name;
         this.orderDate = orderDate;
         this.orderStatus = orderStatus;
         this.address = address;
         this.orderitems = orderitems;
+        this.itemName = itemName;
+        OrderPrice = orderPrice;
+        this.count = count;
     }
 }
