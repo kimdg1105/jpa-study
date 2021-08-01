@@ -82,6 +82,18 @@ public class OrderApiController {
 
     }
 
+    /**
+     * Query : 루트 1번, 컬렉션 1번 실행
+     * Map을 이용하여 매칭 성능 향상
+     *
+     * @return
+     */
+    @GetMapping("/api/v5/orders")
+    public List<OrderQueryDto> orderV5() {
+        return orderQueryRepository.findAllByDto_optimzation();
+
+    }
+
     @Getter
     static class OrderDto {
 
